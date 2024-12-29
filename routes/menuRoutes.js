@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const MenuItems = require('./../models/menuitems.js'); // Match file name case exactly
+const MenuItems = require('../models/menuitems.js'); // Match file name case exactly
 
 //post method for menuitem
 router.post('/', async (req, res) => {
