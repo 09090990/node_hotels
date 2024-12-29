@@ -8,7 +8,7 @@ app.use(bodyParser.json()); // req.body
 const PORT = process.env.PORT || 3000;
 
 
-const MenuItems = require('./models/menuitems.js');
+// const MenuItems = require('./models/menuitems.js');
 
 
 
@@ -20,11 +20,11 @@ app.get('/', function (req, res) {
 
 //import the router files 
 const personRoutes = require('./routes/personRoutes');
-const menuRoutes = require('./routes/menuRoutes')
+// const menuRoutes = require('./routes/menuRoutes')
 
 // use the routes
 app.use('/person',personRoutes)
-app.use('/menuitem',menuRoutes)
+// app.use('/menuitem',menuRoutes)
 
 
 app.listen()
