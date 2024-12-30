@@ -13,7 +13,7 @@ require('dotenv').config();
 //  useUnifiedTopology:true
 // })
 
-mongoose.connect('mongodb://127.0.0.1:27017/hotel');
+ mongoose.connect('mongodb://127.0.0.1:27017/hotel');
 
 //get the default connection 
 // mongoose maintains a default connection object representing the mongodb connection
