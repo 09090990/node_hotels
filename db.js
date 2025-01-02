@@ -4,16 +4,22 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 
-//const mongoURL = 'mongodb://mongodb://127.0.0.1:27017/hotel' // change the name with your database 
- const mongoURL = process.env.MONGODB_URL;
+const mongoURL = 'mongodb://mongodb://127.0.0.1:27017/hotel' // change the name with your database 
+ //const mongoURL = process.env.MONGODB_URL;
 
 //setup mongodb connection 
 // mongoose.connect(mongoURL,{
 //  useNewUrlParser:true,
 //  useUnifiedTopology:true
 // })
-
- //mongoose.connect('mongodb://127.0.0.1:27017/hotel');
+// .then(() => {
+//     console.log('Connected to MongoDB');
+//   })
+//   .catch(err => {
+//     console.error('Error connecting to MongoDB:', err);
+//   });
+  
+ mongoose.connect('mongodb://127.0.0.1:27017/hotel');
 
 //get the default connection 
 // mongoose maintains a default connection object representing the mongodb connection

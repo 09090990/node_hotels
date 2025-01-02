@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const db = require('./db')
 require('dotenv').config();
+const passport = require('./auth');
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); // req.body
@@ -9,11 +10,21 @@ const PORT = process.env.PORT || 3000;
 
 // const MenuItems = require('././models/menuitems.js');
 
+//middle ware function
+const logRequest = (req, res, next) => {
+  console.log(`${new Date().toLocaleString()} Request Made to: ${req.originalUrl}`);
+  next(); // Move to the next middleware or route handler
+};
 
-
-app.get('/', function (req, res) {
-  res.send('Hello World')
+app.use(logRequest);
+const localAuthMiddleware = passport.authenticate('local',{session:false})
+app.get('/', localAuthMiddleware,function (req, res) {
+  res.send('Welcome to our Hotel')
 })
+
+
+
+app.use(passport.initialize());
 
 // app.post('/', async (req, res) => {
 //   try {
@@ -48,11 +59,11 @@ app.get('/', function (req, res) {
 
 //import the router files 
 const personRoutes = require('./routes/personRoutes');
-// const menuRoutes = require('./routes/menuRoutes')
+const menuRoutes = require('./routes/menuRoutes')
 
 // use the routes
-app.use('/person', personRoutes)
-// app.use('/menuitem',menuRoutes)
+app.use('/person',localAuthMiddleware, personRoutes)
+app.use('/menuitem',menuRoutes)
 
 
-app.listen()
+app.listen(3000)
